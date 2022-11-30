@@ -1,0 +1,36 @@
+  <!-- 底部 -->
+  <div class="container di ">
+    <h2 class="hz ">合作伙伴</h2>
+    <% friendUrl.forEach(function(i){%>
+      <span class="label label-primary"><a href="http://<%= i.url%>">
+          <%= i.name%>
+        </a></span>
+      <% })%>
+  </div>
+
+  <!-- 法律信息 -->
+  <div class="container-fluid fa1">
+    <div class="container">
+      <p>©2021年著作权 中国所有权。 京ICP备06066266号-6</p>
+      <p>
+        china.nba.cn上除去使用条款中所特别提及的部分之外，其它任何内容都不得以任何形式被复制、再传播，或篡改。
+      </p>
+      <p>
+        进入china.nba.cn后，即表示阁下同意遵守china.nba.cn的隐私政策和使用条款。
+      </p>
+      <p>有任何的建议和意见，都欢迎联络我们：NBAChinaInfo@nba.com</p>
+      <p>
+        有关NBA商品授权合作事宜，敬请联系:GMGChinaBusinessInquiry@nba.com
+      </p>
+    </div>
+
+  </div>
+
+
+
+<!-- Javascript -->
+<script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>

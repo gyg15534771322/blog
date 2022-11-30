@@ -1,0 +1,42 @@
+<% include header %>
+
+
+
+  <!-- 主体 -->
+  <div class="container guanggao">
+    <ol class="breadcrumb">
+      <li><a href="/">首页</a></li>
+      <li><a href="/item?_id=<%=user.itemId%>">
+          <% items.forEach(function(item){%>
+            <% if(item._id.toString()==user.itemId){%>
+                栏目：<%= item.name%>
+                  <%}%>
+                    <%})%>
+        </a></li>
+      <li class="active">内容页</li>
+    </ol>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h1>
+          <%= user.title%>
+        </h1>
+      </div>
+
+      <div class="panel-footer users">
+        <span class="user">
+          作者：
+          <%= user.author%>
+        </span>
+        <em class="time">时间：<%= new Date(user.created).toLocaleString()%></em>
+      </div>
+      <div class="panel-body">
+        描述：<%=user.description%>
+          <hr>
+          <%- user.content%>
+      </div>
+    </div>
+  </div>
+
+
+
+  <% include footer %>

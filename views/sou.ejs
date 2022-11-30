@@ -1,0 +1,70 @@
+<% include header %>
+
+
+
+  <!-- 主体 -->
+  <div class="container zhu">
+      <div class="zhu1 col-md-12">
+        <ol class="breadcrumb">
+          <li><a href="/">首页</a></li>
+          <li class="active">搜索内容</li>
+        </ol>
+        <div class="panel panel-default  ">
+          <!-- Default panel contents -->
+              <h3 class="panel-heading">
+                搜索内容
+              </h3>
+          <!-- List group -->
+          <ul class="list-group ">
+            <% users.forEach(function(i1){%>
+                <li class="list-group-item">
+                  <a href="/user?_id=<%= i1._id%>" class="users">
+                    <span class="user"><%= i1.title%></span>
+                    <em class="time">时间：<%= new Date(i1.created).toLocaleString()%></em>
+                  </a>
+                </li>
+              <% })%>
+            
+
+          </ul>
+
+        </div>
+      </div>
+
+
+  </div>
+
+
+	<nav aria-label="Page navigation " class="center">
+		<ul class="pagination">
+			<li>
+				<a href="/sou?description=<%= description%>&page=<%= users.page==1?1:users.page-1%>" aria-label="Previous">
+					<span aria-hidden="true">&laquo;</span>
+				</a>
+			</li>
+			<% for(var i=1;i<=users.pageMax;i++){ %>
+				<li class="<%= users.page==i?'active':''%>">
+					<a href="/sou?description=<%= description%>&page=<%= i%>">
+						<%= i%>
+					</a>
+				</li>
+				<% } %>
+					<li>
+						<a href="/sou?description=<%= description%>&page=<%= users.page==users.pageMax?users.pageMax:users.page*1+1%>"
+							aria-label="Next">
+							<span aria-hidden="true">&raquo;</span>
+						</a>
+					</li>
+		</ul>
+	</nav>
+
+ 
+
+  
+
+
+
+
+
+
+  <% include footer %>

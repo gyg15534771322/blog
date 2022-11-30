@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>IT 小站</title>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+	<!-- 供应商 CSS -->
+	<link rel="stylesheet" href="/assets/vendor/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="/assets/vendor/font-awesome/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="/assets/vendor/linearicons/style.css" />
+	<link rel="stylesheet" href="/assets/vendor/chartist/css/chartist-custom.css" />
+	<link rel="stylesheet" href="/css/index.css">
+</head>
+
+<body>
+
+	<!-- 导航栏 -->
+	<nav class="container-fluid navbar navbar-default navbar-fixed-top navbar-inverse">
+		<div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+					data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand  " href="/">
+					<span class="glyphicon glyphicon-eye-open long"></span> IT 小站</a>
+			</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li class="<%= itemId?'':'active'%>"><a href="/">首页<span class="sr-only">(current)</span></a></li>
+					<% items.forEach(function(i){%>
+						<li class="<%= itemId?i._id==itemId?'active':'':''%>"><a href="/item?_id=<%= i._id%>">
+								<%= i.name%>
+							</a></li>
+						<% })%>
+				</ul>
+
+				<ul class="nav navbar-nav navbar-right">
+					<form class="navbar-form navbar-left" method="get" action="/sou">
+						<div class="form-group">
+						  <input type="text" name="description" class="form-control" placeholder="根据描述模糊搜索" >
+						</div>
+						<button type="submit" class="btn btn-default">搜索</button>
+					  </form>
+				  </ul>
+
+			</div>
+		</div>
+	</nav>
+	<!-- 导航栏 over -->

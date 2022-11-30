@@ -1,0 +1,77 @@
+<% include header %>
+
+<ol class="breadcrumb">
+    <li><a href="/admin">首页</a></li>
+    <li class="active">友情链接管理</li>
+  </ol>
+
+
+<!-- 表格 -->
+<div class="row">
+	<div class="col-md-12">
+		<!-- RECENT PURCHASES -->
+		<div class="panel">
+			<div class="panel-heading">
+				<h3 class="panel-title">友情链接列表</h3>
+				<div class="right">
+					<button type="button" class="btn-toggle-collapse">
+						<i class="lnr lnr-chevron-up"></i>
+					</button>
+					<button type="button" class="btn-remove">
+						<i class="lnr lnr-cross"></i>
+					</button>
+				</div>
+			</div>
+			<div class="panel-body no-padding">
+				<table class="table table-striped tb">
+					<thead>
+						<tr class="tb">
+							<th>栏目名称</th>
+							<th>友情链接URL</th>
+							<th>修改 &amp; 删除</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% friendUrl.forEach(function(i){ %>
+							<tr>
+								<td><a href="#"><%= i.name %></a></td>
+								<td><%= i.url %></td>
+								<td>
+									<a href="/admin/friendUrlUpdate/<%= i._id%>" class="label label-success">修改</a>
+									<a href="/admin/friendUrl_remove/<%= i._id%>" onclick="return confirm('是否确定删除 [<%= i.name%>]友情链接') " class="label label-danger">删除</a>
+								</td>
+							</tr>
+						<% })%>
+					</tbody>
+				</table>
+				<nav aria-label="Page navigation " class="center">
+					<ul class="pagination">
+						<li>
+							<a href="/admin/friendUrlLuck?page=<%= friendUrl.page==1?1:friendUrl.page-1%>" aria-label="Previous">
+								<span aria-hidden="true">&laquo;</span>
+							</a>
+						</li>
+						<% for(var i=1;i<=friendUrl.pageMax;i++){ %>
+							<li class="<%= friendUrl.page==i?'active':''%>">
+								<a href="/admin/friendUrlLuck?page=<%= i%>">
+									<%= i%>
+								</a>
+							</li>
+							<% } %>
+								<li>
+									<a href="/admin/friendUrlLuck?page=<%= friendUrl.page==friendUrl.pageMax?friendUrl.pageMax:friendUrl.page*1+1%>"
+										aria-label="Next">
+										<span aria-hidden="true">&raquo;</span>
+									</a>
+								</li>
+					</ul>
+				</nav>
+			
+			</div>
+		</div>
+		<!-- END RECENT PURCHASES -->
+	</div>
+</div>
+
+
+<% include footer %>

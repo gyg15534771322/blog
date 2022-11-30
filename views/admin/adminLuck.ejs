@@ -1,0 +1,114 @@
+<% include header %>
+
+  <ol class="breadcrumb">
+    <li><a href="/admin">首页</a></li>
+    <li class="active">管理员管理</li>
+  </ol>
+
+
+  <!-- 表格 -->
+  <div class="row">
+    <div class="col-md-12">
+      <!-- RECENT PURCHASES -->
+      <div class="panel">
+        <div class="panel-heading">
+          <h3 class="panel-title">管理员列表</h3>
+          <div class="right">
+            <button type="button" class="btn-toggle-collapse">
+              <i class="lnr lnr-chevron-up"></i>
+            </button>
+            <button type="button" class="btn-remove">
+              <i class="lnr lnr-cross"></i>
+            </button>
+          </div>
+        </div>
+        <div class="panel-body no-padding">
+          <table class="table table-striped tb">
+            <thead>
+              <tr class="tb">
+                <th>管理员名称</th>
+                <th>管理员头像</th>
+                <th>修改 &amp; 删除</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% admin.forEach(function(i){ %>
+                <tr>
+                  <td><a href="#">
+                      <%= i.name %>
+                    </a></td>
+                  <td><img src="/<%- i.imgUrl%>" class="img-circle imgUrl " alt="<%= i.imgUrl %>"></td>
+                  <td>
+                    <!-- <a href="/admin/adminUpdate/<%= i._id%>" class="label label-success disabled">修改</a> -->
+                    
+                    <span data_id="<%= i._id%>" name="<%= i.name%>"
+                      class="label label-success disabled xiu yanzheng">修改</span>
+
+                    <span data_id="<%= i._id%>" name="<%= i.name%>"
+                      class="label label-danger disabled shan yanzheng">删除</span>
+                    <!-- <a href="/admin/admin_remove/<%= i._id%>" class="label label-danger disabled shan">删除</a> -->
+                  </td>
+                </tr>
+                <% })%>
+            </tbody>
+          </table>
+          <nav aria-label="Page navigation " class="center">
+            <ul class="pagination">
+              <li>
+                <a href="/admin/adminLuck?page=<%= admin.page==1?1:admin.page-1%>" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
+              <% for(var i=1;i<=admin.pageMax;i++){ %>
+                <li class="<%= admin.page==i?'active':''%>">
+                  <a href="/admin/adminLuck?page=<%= i%>">
+                    <%= i%>
+                  </a>
+                </li>
+                <% } %>
+                  <li>
+                    <a href="/admin/adminLuck?page=<%= admin.page==admin.pageMax?admin.pageMax:admin.page*1+1%>"
+                      aria-label="Next">
+                      <span aria-hidden="true">&raquo;</span>
+                    </a>
+                  </li>
+            </ul>
+          </nav>
+
+        </div>
+      </div>
+      <!-- END RECENT PURCHASES -->
+    </div>
+  </div>
+
+
+  <% include footer %>
+    <script>
+      $('.shan').click(function () {
+        var str = prompt(`请输入[${$(this).attr('name')}]登录密码`, '');
+        if (str || str === '') {
+          $.get(`/admin/admin_mi/${$(this).attr('data_id')}?password=${str}`,(e)=>{
+              if(e=='密码错误'){
+                alert(e);
+              }else if(e == '密码正确'){
+                alert(e);
+                location.href = `/admin/admin_remove/${$(this).attr('data_id')}`;
+              }
+          })
+        }
+      });
+
+      $('.xiu').click(function () {
+        var str = prompt(`请输入[${$(this).attr('name')}]登录密码`, '');
+        if (str || str === '') {
+          $.get(`/admin/admin_mi/${$(this).attr('data_id')}?password=${str}`,(e)=>{
+              if(e=='密码错误'){
+                alert(e);
+              }else if(e == '密码正确'){
+                alert(e);
+                location.href =`/admin/adminUpdate/${$(this).attr('data_id')}`;
+              }
+          })
+        }
+      })
+    </script>

@@ -1,0 +1,62 @@
+<% include header %>
+
+
+  <div class="container guanggao">
+    <div class="jumbotron">
+      <h1>Hello, world!</h1>
+      <h3></h3>
+      <p><a class="btn btn-primary btn-lg" href="/admin" role="button">登录后台</a></p>
+    </div>
+  </div>
+
+
+  <!-- 主体 -->
+  <div class="container zhu">
+
+    <% items.forEach(function(i){%>
+      <div class="zhu1 col-md-6">
+        <div class="panel panel-default  ">
+          <!-- Default panel contents -->
+          <div class="panel-heading">
+            栏目：
+            <%= i.name%>
+          </div>
+          <div class="panel-body">
+            <p>
+              <span>描述：</span>
+              <em>
+                <%= i.info%>
+              </em>
+            </p>
+          </div>
+          <!-- List group -->
+          <ul class="list-group ">
+            <% users[i.name].forEach(function(i1){%>
+              <li class="list-group-item">
+                <a href="/user?_id=<%= i1._id%>" class="users">
+                  <span class="user">
+                    <%= i1.title%>
+                  </span>
+                  <em class="time">时间：<%= new Date(i1.created).toLocaleString()%></em>
+                </a>
+              </li>
+              <% })%>
+
+
+          </ul>
+
+        </div>
+      </div>
+      <% })%>
+
+
+  </div>
+
+
+
+
+
+
+
+
+  <% include footer %>

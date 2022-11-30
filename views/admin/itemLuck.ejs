@@ -1,0 +1,77 @@
+<% include header %>
+
+<ol class="breadcrumb">
+    <li><a href="/admin">首页</a></li>
+    <li class="active">栏目列表</li>
+  </ol>
+
+
+<!-- 表格 -->
+<div class="row">
+	<div class="col-md-12">
+		<!-- RECENT PURCHASES -->
+		<div class="panel">
+			<div class="panel-heading">
+				<h3 class="panel-title">栏目列表</h3>
+				<div class="right">
+					<button type="button" class="btn-toggle-collapse">
+						<i class="lnr lnr-chevron-up"></i>
+					</button>
+					<button type="button" class="btn-remove">
+						<i class="lnr lnr-cross"></i>
+					</button>
+				</div>
+			</div>
+			<div class="panel-body no-padding">
+				<table class="table table-striped tb">
+					<thead>
+						<tr class="tb">
+							<th>栏目名称</th>
+							<th>栏目描述</th>
+							<th>修改 &amp; 删除</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% items.forEach(function(i){ %>
+							<tr>
+								<td><a href="#"><%= i.name %></a></td>
+								<td><%= i.info %></td>
+								<td>
+									<a href="/admin/itemUpdate/<%= i._id%>" class="label label-success">修改</a>
+									<a href="/admin/item_remove/<%= i._id%>" onclick="return confirm('是否确定删除 [<%= i.name%>]栏目') " class="label label-danger">删除</a>
+								</td>
+							</tr>
+						<% })%>
+					</tbody>
+				</table>
+				<nav aria-label="Page navigation " class="center">
+					<ul class="pagination">
+						<li>
+							<a href="/admin/itemLuck?page=<%= items.page==1?1:items.page-1%>" aria-label="Previous">
+								<span aria-hidden="true">&laquo;</span>
+							</a>
+						</li>
+						<% for(var i=1;i<=items.pageMax;i++){ %>
+							<li class="<%= items.page==i?'active':''%>">
+								<a href="/admin/itemLuck?page=<%= i%>">
+									<%= i%>
+								</a>
+							</li>
+							<% } %>
+								<li>
+									<a href="/admin/itemLuck?page=<%= items.page==items.pageMax?items.pageMax:items.page*1+1%>"
+										aria-label="Next">
+										<span aria-hidden="true">&raquo;</span>
+									</a>
+								</li>
+					</ul>
+				</nav>
+			
+			</div>
+		</div>
+		<!-- END RECENT PURCHASES -->
+	</div>
+</div>
+
+
+<% include footer %>

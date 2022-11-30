@@ -1,0 +1,82 @@
+<% include header %>
+
+	<ol class="breadcrumb">
+		<li><a href="/admin">首页</a></li>
+		<li><a href="#">文章管理</a></li>
+		<li class="active">文章列表</li>
+	</ol>
+
+
+	<div class="col-md-12">
+		<!-- PANEL WITH FOOTER -->
+		<% users.forEach(function(i){ %>
+			<div class="panel panel_1">
+				<a class="no" href="/admin/userOne/<%= i._id %>">
+					<div class="panel-heading">
+						<h3 class="panel-title">
+							<%= i.title %>
+						</h3>
+						<div class="right">
+							<button type="button" class="btn-toggle-collapse"><i
+									class="lnr lnr-chevron-up"></i></button>
+							<button type="button" class="btn-remove"><i class="lnr lnr-cross"></i></button>
+						</div>
+					</div>
+					<div class="panel-body" style="display: block;">
+						<div class="fen">
+							<p>
+								描述：
+								<%= i.description %>
+							</p>
+							<p>
+								所属栏目：
+								<%=i.itemId.name %>
+							</p>
+						</div>
+
+					</div>
+					<div class="panel-footer fen">
+						<h5>作者： <%= i.author %>
+						</h5>
+						<h6 class="time">创作时间：<span>
+								<%= i.created %>
+							</span>
+						</h6>
+					</div>
+				</a>
+			</div>
+			<% })%>
+
+				<!-- END PANEL WITH FOOTER -->
+	</div>
+
+
+	<nav aria-label="Page navigation " class="center">
+		<ul class="pagination">
+			<li>
+				<a href="/admin/userLuck/<%= users.page==1?1:users.page-1%>" aria-label="Previous">
+					<span aria-hidden="true">&laquo;</span>
+				</a>
+			</li>
+			<% for(var i=1;i<=users.pageMax;i++){ %>
+				<li class="<%= users.page==i?'active':''%>">
+					<a href="/admin/userLuck/<%= i%>">
+						<%= i%>
+					</a>
+				</li>
+				<% } %>
+					<li>
+						<a href="/admin/userLuck/<%= users.page==users.pageMax?users.pageMax:users.page*1+1%>"
+							aria-label="Next">
+							<span aria-hidden="true">&raquo;</span>
+						</a>
+					</li>
+		</ul>
+	</nav>
+
+	<% include footer %>
+		<script>
+			$('.time span').text(function () {
+				return new Date($(this).text()).toLocaleString();
+			});
+		</script>

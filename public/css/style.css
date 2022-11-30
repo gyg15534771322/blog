@@ -1,0 +1,80 @@
+
+
+a {
+  color: #00B7FF;
+}
+
+.tb{
+  text-align: center;
+}
+.tb th{
+  text-align: center;
+}
+.input-group {
+  margin-bottom: 10px;
+}
+
+.userTi{
+  font-size: 30px;
+  display: block;
+  margin: 0 auto;
+}
+
+.panel_1:hover{
+  cursor: pointer;
+  background-color: #f5f5f5;
+}
+.fen{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.no{
+  color: initial;
+}
+.neirong{
+  padding: 20px;
+  background-color: #f5f5f5;
+}
+.an{
+  font-size: 25px;
+  text-align: center;
+  padding: 20px;
+}
+.yan{
+  display: flex;
+}
+.yan input{
+  width: 20%;
+}
+.yanzheng{
+  cursor: pointer;
+}
+.flex{
+  display: flex;
+  align-items: center;
+}
+.w50{
+  width: 70px;
+}
+
+.center{
+  text-align: center;
+}
+.panel-body{
+  padding: 0;
+}
+.panel-footer{
+  padding: 0;
+}
+.panel .panel-heading{
+  padding-bottom: 0;
+}
+.panel{
+  margin-bottom: 10px;
+}
+
+.imgUrl{
+  width: 30px !important;
+  height: 30px;
+}

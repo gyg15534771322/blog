@@ -1,0 +1,18 @@
+/* 所有为演示目的创建的样式，您的项目可能不需要这个 */
+.demo-button button {
+  margin-bottom: 5px; }
+
+.demo-icons li {
+  margin-bottom: 50px;
+  text-align: center; }
+
+.demo-icons .lnr,
+.demo-icons .fa {
+  font-size: 28px; }
+
+.demo-icons .cssclass {
+  display: block;
+  margin-top: 5px;
+  margin-left: 5px; }
+
+/*# sourceMappingURL=demo.css.map */

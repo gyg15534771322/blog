@@ -1,0 +1,76 @@
+<% include header %>
+
+    <ol class="breadcrumb">
+        <li><a href="/admin">首页</a></li>
+        <li><a href="/admin/userLuck">文章管理</a></li>
+        <li class="active">添加文章</li>
+    </ol>
+
+    <div class="col-md-12">
+        <form method="post" action="/admin/user_Add">
+            <!-- INPUTS -->
+            <div class="panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title">添加文章</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="input-group col-md-12">
+                        <span class="input-group-btn">
+                            <span class="btn btn-success" type="button">文章标题</span>
+                        </span>
+                        <input name="title" required class="form-control" type="text">
+                    </div>
+                    <div class="input-group col-md-12">
+                        <span class="input-group-btn">
+                            <span class="btn btn-warning"  type="button">文章作者</span>
+                        </span>
+                        <input class="form-control" required name="author" type="text">
+                    </div>
+
+                    <div class="input-group col-md-12">
+                        <span class="input-group-btn">
+                            <span class="btn btn-primary" type="button">文章描述</span>
+                        </span>
+                        <textarea class="form-control" required name="description" rows="2"></textarea>
+                    </div>
+                    <div class="input-group col-md-12">
+                        <span class="input-group-btn">
+                            <span class="btn btn-danger" type="button">所属栏目</span>
+                        </span>
+                        <select class="form-control" name="itemId">
+                            <% items.forEach(function(i){ %>
+                                <option value="<%= i._id%>"><%= i.name%></option>
+                            <% })%>
+                        </select>
+                    </div>
+                    <input class="content" required type="hidden" name="content">
+
+                    <div class="input-group col-md-12">
+                        <div id="div1">
+                            <p>欢迎使用 <b>wangEditor</b> 富文本编辑器</p>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary userTi" onclick="clik()">提交</button>
+                </div>
+            </div>
+            <!-- END INPUTS -->
+        </form>
+    </div>
+
+    <!-- 引入 wangEditor.min.js -->
+    <script src="/js/wangEditor.min.js"></script>
+    <script type="text/javascript">
+        function clik(){
+            document.querySelector('.content').value=document.querySelector('.w-e-text').innerHTML;
+            console.log( document.querySelector('.content').value);
+        }
+        const E = window.wangEditor
+        const editor = new E('#div1')
+        // 设置编辑区域高度为 500px
+        editor.config.height = 200;
+        editor.create()
+    </script>
+
+
+    <% include footer %>

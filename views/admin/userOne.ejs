@@ -1,0 +1,42 @@
+<% include header %>
+
+    <ol class="breadcrumb">
+        <li><a href="/admin">首页</a></li>
+        <li><a href="/admin/userLuck">文章管理</a></li>
+        <li class="active">文章具体内容</li>
+    </ol>
+
+    <div class="col-md-12">
+        <!-- PANEL HEADLINE -->
+        <div class="panel panel-headline">
+            <div class="panel-heading">
+                <h2 class="panel-title">
+                    <%= user.title%>
+                </h2>
+                <p class="panel-subtitle">
+                    简介：
+                    <%= user.description%>
+                </p>
+            </div>
+            <div class="panel-body">
+                <h6>
+                    作者：
+                    <%= user.author%>
+                </h6>
+                <hr>
+                <div class="neirong">
+                    <%- user.content%>
+                </div>
+                <div class="an">
+                    <a href="/admin/userUpdate/<%= user._id%>" class="label label-success">修改</a>
+                    <a href="/admin/user_remove/<%= user._id%>" onclick="return confirm('是否确定删除 [<%= user.title%>]文章') "
+                        class="label label-danger">删除</a>
+                </div>
+                
+            </div>
+        </div>
+        <!-- END PANEL HEADLINE -->
+    </div>
+
+
+    <% include footer %>
